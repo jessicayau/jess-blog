@@ -2,9 +2,9 @@
 
 {% block content %}
     <div class="post-entry">
-        <img src="{{ object.cover.url }}" alt="">
-        <h2>{{ object.title }}</h2>
-        <h4>{{ object.date_created|date:"F j, Y" }}</h4>
+        <img src="{{ object.cover.url }}" class="img-fluid" alt="">
+        <h2 class="title">{{ object.title }}</h2>
+        <h4 class="date"><em>{{ object.date_created|date:"F j, Y" }}</em></h4>
         <p>{{ object.content|safe }}</p>
     </div>
     {% if user.username == post.author.username %}
@@ -13,25 +13,28 @@
     {% endif %}
     <br>
     <hr>
-    <h2>{{ post.comment_set.all.count}} Comments...</h2>
+    <h2 class="comments">{{ post.comment_set.all.count}} Comments...</h2>
     {% if not post.comment_set.all %}
-        <p>No comments yet...</p>
+        <p>No comments yet. Be the first to leave a message!</p>
     {% else %}
         {% for comment in post.comment_set.all %}
-            <p>{{ comment.user }}</p>
-            <p>{{ comment.text }}</p>
-            <p>{{ comment.comment_date }}</p>
-            <br>
+            <div class="comment-container">
+                <p class="comment-user"><strong>{{ comment.user }}</strong><span> says...</span></p>
+                <p class="comment-text">{{ comment.text }}</p>
+                <p class="comment-date"><em>{{ comment.comment_date }}</em></p>
+            </div>
         {% endfor %}
     {% endif %}
     <br><br>
     {% if user.is_authenticated %}
-        <form method="POST">
-            {% csrf_token %}
-            {{ comment_form.as_p }}
-            <button class="btn" type="submit">Add comment</i></button>
-            </div>
-        </form>
+        <div class="comment-box">
+            <form method="POST">
+                {% csrf_token %}
+                {{ comment_form.as_p }}
+                <button class="btn comment-btn" type="submit">Add comment</i></button>
+                </div>
+            </form>
+        </div>
         <br>
     {% else %}
         <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to leave a comment.

@@ -39,7 +39,6 @@ footer {
     text-align: center;
 }
 
-
 /* navigation */
 .hamburger {
     color: pink;
@@ -102,6 +101,61 @@ footer {
     border: 1px solid grey;
 }
 
+.excerpt {
+    max-height: 200px;
+}
+
+/* post details */
+.post-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.post-entry h2 {
+    text-align: center;
+    margin: 2rem 0 1rem;
+    font-weight: 900;
+}
+
+.date {
+    font-size: 1.2rem;
+}
+
+.post-entry p {
+    width: 90%;
+    padding: .5rem 0;
+    text-align: left;
+}
+
+/* comments */
+.comments {
+    font-size: 1.7rem;
+}
+
+.comment-container {
+    margin: 1rem 0;
+}
+
+.comment-user {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+}
+
+textarea {
+    max-width: 100%;
+}
+
+.comment-btn {
+    color: powderblue;
+}
+
+.comment-btn:hover {
+    color: pink;
+}
 
 /* forms */
 .form-container {
