@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="post-entry">
+        <img src="{{ object.cover.url }}" alt="">
+        <h2>{{ object.title }}</h2>
+        <h4>{{ object.date_created|date:"F j, Y" }}</h4>
+        <p>{{ object.content|safe }}</p>
+    </div>
+    {% if user.username == post.author.username %}
+        <a href="{% url 'post_edit' object.pk %}">Edit Blog Post</a> | 
+        <a href="{% url 'post_delete' object.pk %}">Delete Blog Post</a>
+    {% endif %}
+    <br>
+    <hr>
+    <h2>{{ post.comment_set.all.count}} Comments...</h2>
+    {% if not post.comment_set.all %}
+        <p>No comments yet...</p>
+    {% else %}
+        {% for comment in post.comment_set.all %}
+            <p>{{ comment.user }}</p>
+            <p>{{ comment.text }}</p>
+            <p>{{ comment.comment_date }}</p>
+            <br>
+        {% endfor %}
+    {% endif %}
+    <br><br>
+    {% if user.is_authenticated %}
+        <form method="POST">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <button class="btn" type="submit">Add comment</i></button>
+            </div>
+        </form>
+        <br>
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to leave a comment.
+    {% endif %}
+
+    
+
+{% endblock content %}

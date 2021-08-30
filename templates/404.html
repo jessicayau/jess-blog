@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid error-container">
+        <h1>OOPS</h1>
+        <h2>Something's Missing... (404)</h2>
+        <P>Nothing was found here.</P>
+        <p>Please try another search.</p>
+        <form method="GET" action="{% url 'search' %}" class="error-form d-flex">
+            <button class="btn" type="submit"><i class="fas fa-search"></i></button>
+            <input class="form-control error-search-box me-2" type="search" name="search" value="{{request.GET.search }}" placeholder="Search" aria-label="Search">
+        </form>
+    </div>
+{% endblock %}

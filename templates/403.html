@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid error-container">
+    <h1>SORRY</h1>
+    <h2>Forbidden (403)</h2>
+    <P>Your access has been denied.</P>
+    <button class="home-btn"><a href="{% url 'home' %}">Home</a></button>
+</div>
+{% endblock %}

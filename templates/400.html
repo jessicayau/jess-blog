@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid error-container">
+    <h1>OOPS</h1>
+    <h2>Bad Request (400)</h2>
+    <P>Something went wrong.</P>
+    <button class="home-btn"><a href="{% url 'home' %}">Home</a></button>
+</div>
+{% endblock %}

@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1em;
+    margin: 0;
+}
+
+header {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid grey;
+}
+
+a {
+    text-decoration: none;
+    color: grey;
+}
+
+a:hover {
+    color: pink;
+}
+
+i:hover {
+    color: powderblue;
+}
+
+p {
+    margin: 0;
+}
+
+footer {
+    text-align: center;
+}
+
+
+/* navigation */
+.hamburger {
+    color: pink;
+}
+
+.navbar {
+    border-bottom: 1px solid lightgrey;
+}
+
+.navbar-brand {
+    background: powderblue;
+    color: grey;
+    border-radius: 5px;
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.nav-icons {
+    justify-content: flex-start;
+}
+
+.nav-link {
+    text-transform: uppercase;
+    color: grey;
+}
+
+.nav-link:hover {
+    color: pink;
+}
+
+.nav-icon {
+	margin-right: 10px;
+	font-size: 1.3em;
+}
+
+.search-box{
+	border: none;
+	border-bottom: 1px solid grey;
+	background-color: transparent;
+	border-radius: 0;
+    outline: none;
+}
+
+.dropdown-menu {
+    border: none;
+}
+
+
+/* header */
+.brand {
+    font-weight: 900;
+    color: rgb(53, 53, 53)
+}
+
+
+/* posts */
+.view-post-btn {
+    border: 1px solid grey;
+}
+
+
+/* forms */
+.form-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-label {
+    display: block;
+}
+
+
+/* error-handling */
+.error-container {
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: aliceblue;
+}
+
+.error-form {
+    width: 100%;
+    max-width: 400px;
+    padding: 10px 0;
+    border-bottom: 1px solid grey;
+}
+
+.error-search-box {
+	border: none;
+	background-color: transparent;
+	border-radius: 0;
+    outline: none;
+}
+
+.home-btn {
+    padding: 10px 40px;
+    margin: 10px 0;
+    border: 1px solid grey;
+    background-color: transparent;
+    border-radius: 50px;
+}
