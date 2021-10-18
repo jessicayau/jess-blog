@@ -3,7 +3,7 @@
 
 {% block content %}
     <h1>Edit Post</h1>
-    <div class="container-fluid form-container">
+    <div class="container-fluid form-container d-flex justify-content-center">
         <form action="" method="post" enctype="multipart/form-data"> 
             {% csrf_token %}
             {{ form|crispy }}

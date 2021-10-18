@@ -1,34 +1,68 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap");
 
-* {
+/* variables */
+:root {
+    --primary-text-color: grey;
+    --secondary-text-color: rgb(35, 25, 66);
+    --hover-text-color: rgb(224, 177, 203);
+    --accent-color: rgb(94, 84, 142);
+}
+
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
     font-size: 1em;
     margin: 0;
+    color: var(--primary-text-color);
 }
 
 header {
-    height: 150px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 20vh;
     border-bottom: 1px solid grey;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--secondary-text-color);
 }
 
 a {
     text-decoration: none;
-    color: grey;
+    color: var(--accent-color);
 }
 
-a:hover {
-    color: pink;
+a:hover,
+a:active,
+a:focus {
+    color: var(--hover-text-color);
+}
+
+i {
+    color: var(--accent-color);
 }
 
 i:hover {
-    color: powderblue;
+    color: var(--hover-text-color);
+}
+
+button {
+    padding: 0.3rem 1rem;
+    border: 1px solid grey;
+    color: var(--accent-color);
+    border-radius: 0.25rem;
+}
+
+button:hover {
+    color: var(--hover-text-color);
 }
 
 p {
@@ -37,11 +71,12 @@ p {
 
 footer {
     text-align: center;
+    color: var(--secondary-text-color);
 }
 
 /* navigation */
 .hamburger {
-    color: pink;
+    color: var(--accent-color);
 }
 
 .navbar {
@@ -49,8 +84,8 @@ footer {
 }
 
 .navbar-brand {
-    background: powderblue;
-    color: grey;
+    background: var(--accent-color);
+    color: white;
     border-radius: 5px;
 }
 
@@ -64,68 +99,70 @@ footer {
 
 .nav-link {
     text-transform: uppercase;
-    color: grey;
+    color: var(--accent-color);
 }
 
 .nav-link:hover {
-    color: pink;
+    color: var(--hover-text-color);
 }
 
 .nav-icon {
-	margin-right: 10px;
-	font-size: 1.3em;
+    margin-right: 10px;
+    font-size: 1.3em;
 }
 
-.search-box{
-	border: none;
-	border-bottom: 1px solid grey;
-	background-color: transparent;
-	border-radius: 0;
+.search-box {
+    border: none;
+    border-bottom: 1px solid grey;
+    background-color: transparent;
+    border-radius: 0;
     outline: none;
 }
 
 .dropdown-menu {
     border: none;
+    transition: all 2s ease-in-out;
 }
 
+.dropdown-item {
+    color: var(--accent-color);
+}
+
+.dropdown-item:focus,
+.dropdown-item:active,
+.dropdown-item:hover {
+    color: var(--hover-text-color);
+    background-color: white;
+}
 
 /* header */
 .brand {
     font-weight: 900;
-    color: rgb(53, 53, 53)
 }
 
+/* main section */
+.blog-content {
+    min-height: 67vh;
+}
 
 /* posts */
 .view-post-btn {
     border: 1px solid grey;
 }
 
-.excerpt {
-    max-height: 200px;
-}
-
 /* post details */
-.post-entry {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 .post-entry h2 {
-    text-align: center;
     margin: 2rem 0 1rem;
     font-weight: 900;
 }
 
 .date {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 .post-entry p {
     width: 90%;
-    padding: .5rem 0;
-    text-align: left;
+    padding: 0.5rem 0;
 }
 
 /* comments */
@@ -139,6 +176,7 @@ footer {
 
 .comment-user {
     font-weight: bold;
+    color: var(--accent-color);
 }
 
 label {
@@ -149,24 +187,27 @@ textarea {
     max-width: 100%;
 }
 
+textarea:focus {
+    outline: 1px solid var(--accent-color);
+}
+
 .comment-btn {
-    color: powderblue;
+    color: var(--accent-color);
 }
 
 .comment-btn:hover {
-    color: pink;
+    color: var(--hover-text-color);
 }
 
 /* forms */
-.form-container {
-    display: flex;
-    justify-content: center;
-}
-
 .form-label {
     display: block;
 }
 
+/* search results */
+.card-title {
+    font-size: 1.25rem;
+}
 
 /* error-handling */
 .error-container {
@@ -187,9 +228,9 @@ textarea {
 }
 
 .error-search-box {
-	border: none;
-	background-color: transparent;
-	border-radius: 0;
+    border: none;
+    background-color: transparent;
+    border-radius: 0;
     outline: none;
 }
 
@@ -199,4 +240,38 @@ textarea {
     border: 1px solid grey;
     background-color: transparent;
     border-radius: 50px;
+}
+
+@media screen and (max-width: 426px) {
+    .post-entry p {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .navbar {
+        position: fixed;
+        width: 100%;
+        background-color: white;
+        z-index: 1;
+    }
+
+    header {
+        height: 25vh;
+    }
+
+    .brand {
+        transform: translateY(100%);
+    }
+}
+@media screen and (min-width: 1024px) {
+    .comment-section {
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .posts-container {
+        max-width: 2000px;
+    }
 }

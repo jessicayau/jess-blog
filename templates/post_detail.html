@@ -1,44 +1,57 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <div class="post-entry">
+    <div class="post-entry py-3 d-flex flex-column align-items-center">
         <img src="{{ object.cover.url }}" class="img-fluid" alt="">
-        <h2 class="title">{{ object.title }}</h2>
-        <h4 class="date"><em>{{ object.date_created|date:"F j, Y" }}</em></h4>
-        <p>{{ object.content|safe }}</p>
+        <h2 class="title text-center">{{ object.title }}</h2>
+        <h3 class="date mb-3"><em>{{ object.date_created|date:"F j, Y" }}</em></h3>
+        {{ object.content|safe }}
     </div>
     {% if user.username == post.author.username %}
-        <a href="{% url 'post_edit' object.pk %}">Edit Blog Post</a> | 
-        <a href="{% url 'post_delete' object.pk %}">Delete Blog Post</a>
-    {% endif %}
-    <br>
-    <hr>
-    <h2 class="comments">{{ post.comment_set.all.count}} Comments...</h2>
-    {% if not post.comment_set.all %}
-        <p>No comments yet. Be the first to leave a message!</p>
-    {% else %}
-        {% for comment in post.comment_set.all %}
-            <div class="comment-container">
-                <p class="comment-user"><strong>{{ comment.user }}</strong><span> says...</span></p>
-                <p class="comment-text">{{ comment.text }}</p>
-                <p class="comment-date"><em>{{ comment.comment_date }}</em></p>
-            </div>
-        {% endfor %}
-    {% endif %}
-    <br><br>
-    {% if user.is_authenticated %}
-        <div class="comment-box">
-            <form method="POST">
-                {% csrf_token %}
-                {{ comment_form.as_p }}
-                <button class="btn comment-btn" type="submit">Add comment</i></button>
-                </div>
-            </form>
+        <div class="mt-2">
+            <a href="{% url 'post_edit' object.pk %}">Edit Blog Post</a> | 
+            <a href="{% url 'post_delete' object.pk %}">Delete Blog Post</a>
         </div>
-        <br>
-    {% else %}
-        <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to leave a comment.
     {% endif %}
+    <hr>
+    <h2 class="comments">
+        {{ post.comment_set.all.count}} 
+        {% if post.comment_set.all.count != 1 %}
+            Comments...
+        {% else %}
+            Comment...
+        {% endif %}
+    </h2>
+    {% if not user.is_authenticated %}
+        <div>
+            <a href="{% url 'login' %}">Login</a> or <a href="{% url 'signup' %}">Sign Up</a> to leave a comment.
+        </div>
+    {% endif %}
+    <div class="comment-section mb-4 row">
+        {% if not post.comment_set.all %}
+            <p>No comments yet. Be the first to leave a message!</p>
+        {% else %}
+            <div class="comment-container col-md-6">
+                {% for comment in post.comment_set.all %}
+                    <div class="comment mb-3">
+                        <p class="comment-user"><strong>{{ comment.user }}</strong><span> says...</span></p>
+                        <p class="comment-text">{{ comment.text }}</p>
+                        <p class="comment-date"><em>{{ comment.comment_date }}</em></p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% if user.is_authenticated %}
+            <div class="comment-box col-md-6">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ comment_form.as_p }}
+                    <button class="btn comment-btn" type="submit">Add comment</i></button>
+                    </div>
+                </form>
+            </div>            
+        {% endif %}
+    </div>
 
     
 

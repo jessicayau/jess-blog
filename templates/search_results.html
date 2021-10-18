@@ -5,18 +5,19 @@
         <h2>Search results for: <em>{{ request.GET.search|title }}</em></h2>
         <br>
         {% for post in search_results %}
-            <div class="card mb-3" style="max-width: 1000px;">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{ post.cover.url }}" class="img-fluid rounded-start" alt="...">
-                    </div>
-                    <div class="col-md-8 search">
-                        <div class="card-body">
-                        <h3 class="card-title">{{ post.title }}</h3>
-                        <small class="text-muted card-text">{{ post.category }} | {{ post.date_created|date:"F j, Y" }}</small>
-                        <p class="card-text excerpt">{{post.content|safe}}</p>
-                        <br>
-                        <button class="view-post-btn"><a href="{{ post.get_absolute_url }}">View Post</a></button>
+            <div class="container-fluid">
+                <div class="card mb-4" style="max-width: 1000px;">
+                    <div class="row g-0">
+                        <div class="col-md-5 col-lg-4">
+                            <img src="{{ post.cover.url }}" class="img-fluid rounded h-100 w-100" alt="...">
+                        </div>
+                        <div class="col-md-7 col-lg-8 search">
+                            <div class="card-body">
+                                <h3 class="card-title">{{ post.title }}</h3>
+                                <small class="text-muted card-text">{{ post.category }} | {{ post.date_created|date:"F j, Y" }}</small>
+                                <div class="card-text excerpt mb-4 py-2">{{post.content|truncatewords_html:25|safe}}</div>
+                                <button class="view-post-btn"><a href="{{ post.get_absolute_url }}">View Post</a></button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -32,4 +33,22 @@
         </form>
     </div>
     {% endif %}
+
+    <!-- <div class="pagination my-4">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a href="?page=1">&laquo; first</a> |
+                <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+            {% endif %}
+    
+            <span class="current">
+                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}">next</a> |
+                <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div> -->
 {% endblock %}

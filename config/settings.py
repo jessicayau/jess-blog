@@ -160,7 +160,6 @@ CKEDITOR_IMAGE_BACKEND = 'pillow'
 CKEDITOR_ALLOW_NONIMAGE_FILES = False
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'full',
         'width': '100%',
     },
 }

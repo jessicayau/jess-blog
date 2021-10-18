@@ -5,7 +5,7 @@
     <h2 class="text-center"><strong>{{ category }}</strong></h2>
     {% endif %}
     <br>
-    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4 px-4">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xxl-4 g-4">
         {% for post in posts %}
             <div class="col">
                 <div class="card h-100 text-center">
@@ -15,14 +15,21 @@
                     </div>
                     <div class="card-footer">
                         <small class="text-muted">{{ post.date_created|date:"F j, Y" }}</small> | 
-                        <small class="text-muted">{{ post.comment_set.all.count }} comments</small>
+                        <small class="text-muted">
+                            {{ post.comment_set.all.count }} 
+                            {% if post.comment_set.all.count != 1 %}
+                                Comments
+                            {% else %}
+                                Comment
+                            {% endif %}
+                        </small>
                     </div>
                 </div>
             </div>
         {% endfor %}
     </div>
 
-    <div class="pagination py-4">
+    <div class="pagination my-4">
         <span class="step-links">
             {% if page_obj.has_previous %}
                 <a href="?page=1">&laquo; first</a> | 
